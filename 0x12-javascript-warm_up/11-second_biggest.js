@@ -1,27 +1,17 @@
 #!/usr/bin/node
 
-const args = process.argv.slice(2);
+/*
+ * access the arguments
+ * convert args to nums
+ * sort nums
+ * print second biggest num using its index
+ */
 
-const findSecondLargest = (arr) => {
-  if (arr.length < 2) {
-    return 0;
-  }
-  let largest = arr[0];
-  let secondLargest = arr[1];
-  if (secondLargest > largest) {
-    [largest, secondLargest] = [secondLargest, largest];
-  }
-  for (let i = 2; i < arr.length; i++) {
-    if (arr[i] > largest) {
-      secondLargest = largest;
-      largest = arr[i];
-    } else if (arr[i] > secondLargest) {
-      secondLargest = arr[i];
-    }
-  }
-  return secondLargest;
-};
+const args = process.argv;
+const num = args.slice(2, process.argv.length).sort((a, b) => a - b);
 
-const intArgs = args.map(x => parseInt(x, 10));
-
-console.log(findSecondLargest(intArgs));
+if (args.length <= 3) {
+  console.log(0);
+} else {
+  console.log(num[num.length - 2]);
+}
